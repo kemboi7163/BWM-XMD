@@ -1,0 +1,32 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Node.js C1
+
+on:
+push:
+  branches: [ 'main' ]
+pull_request:
+  branches: [ 'main' ] 
+
+jobs:
+  build:
+  
+      runs-on: ubuntu-latest
+    
+      strategy:
+        matrix:
+            node_version: [18.x, 20.x, 22.x]
+            #See supported Node.js release scheduleat https://nodejs.org/en/about/release
+
+         steps:
+      - uses: actions/setup-node@v4
+      - name: Use Node.js S{{ matrix.node-version}}
+        uses: actions/setup-nodePv4
+        with:
+          node-version: S{{ matrix.node-version}}
+          cache: 'rpn'
+      -run: rpn C1
+      -run: rpn run build ••if present
+      -run: rpn test
+      
